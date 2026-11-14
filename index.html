@@ -492,17 +492,7 @@ async function saveProductData() {
     const category = document.getElementById('edit-category').value;
     const image = document.getElementById('edit-image-base64').value.trim();
     const sizes = document.getElementById('edit-sizes').value.split(',').map(s => s.trim()).filter(Boolean);
-    
-    if (!title) return toast('Введите название');
-    if (!priceRaw || priceRaw <= 0) return toast('Введите цену');
-    if (!image) return toast('Выберите фото из галереи');
-    
-    const oldPrice = oldRaw > 0 ? oldRaw : null;
-    const btn = document.getElementById('save-btn'); btn.textContent = 'Сохранение...'; btn.disabled = true;
-    try {
-        if (id) {
-            await setDoc(doc(db, "products", id), { title, price: priceRaw, oldPrice, category, image, sizes });
-        } else {
+  
             const newId = genId();
             await setDoc(doc(db, "products", newId), { title, price: priceRaw, oldPrice, category, image, sizes });
         }
@@ -510,24 +500,7 @@ async function saveProductData() {
         closeProductEditor();
         await loadProducts();
         renderAdminProducts();
-    } catch (e) {
-        console.error(e); toast('Ошибка сохранения');
-    } finally { btn.textContent = 'Сохранить'; btn.disabled = false; }
-}
-
-async function deleteProduct(id) {
-    if (!confirm("Удалить этот товар?")) return;
-    try {
-        await deleteDoc(doc(db, "товары", id));
-        showToast("Удалено");
-        await loadProducts();
-        renderAdminList();
-    } catch (error) {
-        console.error("Ошибка удаления:", error);
-        showToast("Ошибка удаления");
-    }
-}
-
+   // Закрытие модальных окон
 document.querySelectorAll('[data-close]').forEach(item => {
     item.addEventListener('click', () => {
         document.querySelectorAll('.modal, .product-modal, .cart-modal, .wishlist-modal, .admin-modal, .product-editor-modal').forEach(m => {
@@ -536,7 +509,19 @@ document.querySelectorAll('[data-close]').forEach(item => {
     });
 });
 
-loadProducts();
-updateBadges();
-</body>
-</html>
+// Открытие админки по 5 кликам на логотип
+let logoClicks = 0;
+document.addEventListener('click', (e) => {
+    const logo = e.target.closest('img, .logo, h1, span');
+    if (logo && (logo.textContent.includes('DRIP') || logo.closest('header'))) {
+        logoClicks++;
+        if (logoClicks >= 5) {
+            logoClicks = 0;
+            let pin = prompt('Введите PIN-код администратора:');
+            if (pin === '1234') {
+                const adminModal = document.querySelector('.admin-modal') || document.getElementById('adminModal');
+                if (adminModal) adminModal.classList.remove('hidden');
+            }
+        }
+    }
+});
