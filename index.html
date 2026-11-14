@@ -21,6 +21,7 @@ body.modal-open { overflow:hidden; }
 </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-white selection:text-black pb-20">
+
 <header class="sticky top-0 z-40 bg-[#0c0a09]/90 backdrop-blur-md border-b border-zinc-800">
     <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
         <div class="flex items-center space-x-2 cursor-pointer select-none" onclick="handleLogoClick()">
@@ -33,6 +34,7 @@ body.modal-open { overflow:hidden; }
         </div>
     </div>
 </header>
+
 <main class="max-w-md mx-auto px-4 py-4 flex-grow w-full space-y-6">
     <div class="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800/80 rounded-2xl p-4 relative overflow-hidden">
         <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
@@ -43,6 +45,7 @@ body.modal-open { overflow:hidden; }
         <p class="text-xs text-zinc-400 mb-3">Премиальное качество, трендовые позиции и быстрая доставка по Казахстану и СНГ.</p>
         <div class="flex items-center space-x-2 text-[11px] text-zinc-300 flex-wrap gap-y-1"><span class="flex items-center"><i class="fa-solid fa-truck text-zinc-400 mr-1.5"></i> Доставка от 1500 ₸</span><span>•</span><span>Kaspi Перевод</span><span>•</span><span>СНГ</span></div>
     </div>
+
     <div class="flex space-x-2 overflow-x-auto hide-scrollbar pb-1">
         <button data-category="all" onclick="filterCategory('all', this)" class="category-btn px-3.5 py-2 bg-white text-black text-xs font-bold rounded-xl whitespace-nowrap transition">Все</button>
         <button data-category="Худи" onclick="filterCategory('Худи', this)" class="category-btn px-3.5 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium rounded-xl whitespace-nowrap transition hover:text-white">Худи</button>
@@ -51,10 +54,12 @@ body.modal-open { overflow:hidden; }
         <button data-category="Штаны" onclick="filterCategory('Штаны', this)" class="category-btn px-3.5 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium rounded-xl whitespace-nowrap transition hover:text-white">Штаны</button>
         <button data-category="Футболки" onclick="filterCategory('Футболки', this)" class="category-btn px-3.5 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium rounded-xl whitespace-nowrap transition hover:text-white">Футболки</button>
     </div>
+
     <div>
         <div class="flex justify-between items-center mb-3"><h3 class="font-bold text-sm tracking-wide text-zinc-200 uppercase">Каталог товаров</h3><span id="product-count-label" class="text-xs text-zinc-400">0 позиций</span></div>
         <div id="products-grid" class="grid grid-cols-2 gap-3"><div class="col-span-2 text-center py-10 text-zinc-500 text-xs" id="loading-indicator">Загрузка каталога...</div></div>
     </div>
+
     <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-4 space-y-3">
         <h4 class="font-bold text-xs uppercase tracking-wider text-zinc-400">Условия и доставка</h4>
         <div class="grid grid-cols-2 gap-2 text-xs">
@@ -64,6 +69,7 @@ body.modal-open { overflow:hidden; }
         <p class="text-[11px] text-zinc-400 leading-relaxed">🌍 <strong class="text-zinc-200">Доставка по СНГ:</strong> рассчитывается индивидуально — напишите в WhatsApp или Telegram, обсудим сроки и стоимость.</p>
     </div>
 </main>
+
 <footer class="max-w-md mx-auto px-4 py-6 w-full text-center border-t border-zinc-800/80 mt-auto space-y-3">
     <div class="flex justify-center space-x-4 text-sm text-zinc-400">
         <a href="https://wa.me/77056748363" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fa-brands fa-whatsapp text-lg"></i></a>
@@ -73,22 +79,118 @@ body.modal-open { overflow:hidden; }
     <p class="text-xs text-zinc-300 font-medium">DRIP STORE © 2026</p>
     <button onclick="openAdminPanel()" class="text-[11px] text-zinc-500 hover:text-white underline transition">Управление каталогом</button>
 </footer>
-<div id="product-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center" data-close="closeProductModal"><div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop><div class="flex justify-between items-center"><span id="modal-category" class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded-md text-zinc-300"></span><button onclick="closeProductModal()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div><div class="relative rounded-2xl overflow-hidden bg-zinc-900 aspect-square border border-zinc-800"><img id="modal-img" src="" alt="" class="w-full h-full object-cover"></div><div><h3 id="modal-title" class="text-lg font-bold"></h3><div class="flex items-center space-x-2 mt-1"><span id="modal-price" class="text-xl font-extrabold"></span><span id="modal-old-price" class="text-sm text-zinc-500 line-through"></span></div></div><div id="modal-sizes-container"><label class="text-xs font-semibold text-zinc-400 block mb-2">Выберите размер:</label><div id="modal-sizes" class="flex flex-wrap gap-2"></div></div><div class="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800 text-xs space-y-1"><div class="text-zinc-400">Оплата на Kaspi:</div><div class="font-mono font-bold text-zinc-200 flex justify-between items-center gap-2"><span>+7 771 688 17 05 (Медет Е.)</span><button onclick="copyKaspiNumber(this)" class="text-[10px] bg-zinc-800 px-2 py-1 rounded hover:bg-zinc-700 flex-shrink-0">Копировать</button></div></div><div class="grid grid-cols-2 gap-2 pt-2"><button onclick="addToCartFromModal()" class="w-full py-3 bg-zinc-900 border border-zinc-700 font-bold text-xs rounded-xl hover:bg-zinc-800 transition">В корзину</button><button onclick="buyNowFromModal()" class="w-full py-3 bg-white text-black font-bold text-xs rounded-xl hover:bg-zinc-200 transition">Заказать в WhatsApp</button></div><button onclick="contactTelegram()" class="w-full py-2.5 bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold text-xs rounded-xl hover:bg-zinc-800 transition flex items-center justify-center gap-2"><i class="fa-brands fa-telegram"></i> Написать в Telegram</button></div></div>
-<div id="cart-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center" data-close="closeCart"><div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop><div class="flex justify-between items-center"><h3 class="font-bold text-base">Корзина</h3><button onclick="closeCart()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div><div id="cart-items" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div><div class="border-t border-zinc-800 pt-3 space-y-2 text-xs"><div class="flex justify-between text-zinc-400"><span>Сумма заказа:</span><span id="cart-subtotal" class="font-bold text-white">0 ₸</span></div><div class="flex justify-between text-zinc-400"><span>Доставка по РК:</span><span id="cart-delivery" class="font-bold text-white">1 500 ₸</span></div><div class="flex justify-between text-sm font-extrabold pt-2 border-t border-zinc-800"><span>Итого:</span><span id="cart-total">0 ₸</span></div></div><div class="bg-zinc-900 p-3 rounded-xl border border-zinc-800 text-xs space-y-1"><div class="text-zinc-400 font-semibold">Реквизиты Kaspi:</div><div class="font-mono font-bold text-white flex justify-between items-center gap-2"><span>+7 771 688 17 05 (Медет Е.)</span><button onclick="copyKaspiNumber(this)" class="text-[10px] bg-zinc-800 px-2 py-1 rounded flex-shrink-0">Копировать</button></div></div><button onclick="checkoutWhatsApp()" class="w-full py-3 bg-white text-black font-extrabold text-xs rounded-xl hover:bg-zinc-200 transition">Оформить заказ в WhatsApp</button><button onclick="contactTelegram()" class="w-full py-2.5 bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold text-xs rounded-xl hover:bg-zinc-800 transition flex items-center justify-center gap-2"><i class="fa-brands fa-telegram"></i> Написать в Telegram</button></div></div>
-<div id="wishlist-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center" data-close="closeWishlist"><div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop><div class="flex justify-between items-center"><h3 class="font-bold text-base">Избранное</h3><button onclick="closeWishlist()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div><div id="wishlist-items" class="grid grid-cols-2 gap-3"></div></div></div>
-<div id="info-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center" data-close="closeInfo"><div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop><div class="flex justify-between items-center"><h3 id="info-title" class="font-bold text-base">Информация</h3><button onclick="closeInfo()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div><div id="info-content" class="text-xs text-zinc-300 leading-relaxed space-y-3"></div></div></div>
-<div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4" data-close="closeAdminPanel"><div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop><div class="flex justify-between items-center"><h3 class="font-bold text-base flex items-center"><i class="fa-solid fa-lock text-xs mr-2 text-zinc-400"></i> Управление каталогом</h3><button onclick="closeAdminPanel()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div><div id="admin-login-view" class="space-y-3"><p class="text-xs text-zinc-400">Введите Email и пароль администратора.</p><input type="email" id="admin-email-input" placeholder="Email" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-600"><input type="password" id="admin-pass-input" placeholder="Пароль" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-600"><button onclick="loginAdmin()" id="login-btn" class="w-full py-3 bg-white text-black font-bold text-xs rounded-xl hover:bg-zinc-200 transition">Войти</button><p id="login-error" class="text-red-400 text-[10px] text-center hidden"></p></div><div id="admin-dashboard-view" class="space-y-3 hidden"><div class="flex justify-between items-center bg-zinc-900 p-3 rounded-xl border border-zinc-800"><span class="text-xs font-semibold">Режим редактора</span><div class="flex gap-2"><button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-950 text-red-400 text-xs font-bold rounded-lg hover:bg-red-900">Выйти</button><button onclick="openProductEditor()" class="px-3 py-1.5 bg-white text-black text-xs font-bold rounded-lg">+ Товар</button></div></div><div id="admin-products-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div></div></div></div>
-<div id="product-editor-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm hidden items-center justify-center p-4" data-close="closeProductEditor"><div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-3" data-stop><h3 id="editor-title" class="font-bold text-sm">Добавить товар</h3><input type="hidden" id="edit-product-id"><div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Название</label><input type="text" id="edit-title" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"></div><div class="grid grid-cols-2 gap-2"><div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Цена (₸)</label><input type="number" id="edit-price" min="0" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"></div><div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Старая цена</label><input type="number" id="edit-old-price" min="0" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"></div></div><div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Категория</label><select id="edit-category" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"><option value="Худи">Худи</option><option value="Куртки">Куртки</option><option value="Кофты">Кофты</option><option value="Штаны">Штаны</option><option value="Футболки">Футболки</option></select></div><div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Фото товара</label><div class="flex gap-2 items-center mt-1"><input type="file" id="edit-image-file" accept="image/*" class="hidden" onchange="uploadImage(this)"><button onclick="document.getElementById('edit-image-file').click()" class="flex-1 py-2 bg-zinc-800 text-white font-bold text-xs rounded-xl hover:bg-zinc-700 transition flex items-center justify-center gap-2"><i class="fa-solid fa-camera"></i> Загрузить с телефона</button><img id="image-preview" src="" class="w-10 h-10 rounded-lg object-cover hidden border border-zinc-700"></div><input type="text" id="edit-image" placeholder="Или вставьте ссылку..." class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-2"></div><div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Размеры (через запятую)</label><input type="text" id="edit-sizes" value="S, M, L, XL" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"></div><div class="flex space-x-2 pt-2"><button onclick="saveProductData()" id="save-btn" class="flex-1 py-2.5 bg-white text-black font-bold text-xs rounded-xl">Сохранить</button><button onclick="closeProductEditor()" class="px-4 py-2.5 bg-zinc-900 border border-zinc-800 text-xs rounded-xl">Отмена</button></div></div></div>
-<div id="toast-container"></div>
+
+<div id="product-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center" data-close="closeProductModal">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop>
+        <div class="flex justify-between items-center"><span id="modal-category" class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded-md text-zinc-300"></span><button onclick="closeProductModal()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div>
+        <div class="relative rounded-2xl overflow-hidden bg-zinc-900 aspect-square border border-zinc-800"><img id="modal-img" src="" alt="" class="w-full h-full object-cover"></div>
+        <div><h3 id="modal-title" class="text-lg font-bold"></h3><div class="flex items-center space-x-2 mt-1"><span id="modal-price" class="text-xl font-extrabold"></span><span id="modal-old-price" class="text-sm text-zinc-500 line-through"></span></div></div>
+        <div id="modal-sizes-container"><label class="text-xs font-semibold text-zinc-400 block mb-2">Выберите размер:</label><div id="modal-sizes" class="flex flex-wrap gap-2"></div></div>
+        <div class="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800 text-xs space-y-1"><div class="text-zinc-400">Оплата на Kaspi:</div><div class="font-mono font-bold text-zinc-200 flex justify-between items-center gap-2"><span>+7 771 688 17 05 (Медет Е.)</span><button onclick="copyKaspiNumber(this)" class="text-[10px] bg-zinc-800 px-2 py-1 rounded hover:bg-zinc-700 flex-shrink-0">Копировать</button></div></div>
+        <div class="grid grid-cols-2 gap-2 pt-2"><button onclick="addToCartFromModal()" class="w-full py-3 bg-zinc-900 border border-zinc-700 font-bold text-xs rounded-xl hover:bg-zinc-800 transition">В корзину</button><button onclick="buyNowFromModal()" class="w-full py-3 bg-white text-black font-bold text-xs rounded-xl hover:bg-zinc-200 transition">Заказать в WhatsApp</button></div>
+        <button onclick="contactTelegram()" class="w-full py-2.5 bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold text-xs rounded-xl hover:bg-zinc-800 transition flex items-center justify-center gap-2"><i class="fa-brands fa-telegram"></i> Написать в Telegram</button>
+    </div>
+</div>
+
+<div id="cart-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center" data-close="closeCart">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop>
+        <div class="flex justify-between items-center"><h3 class="font-bold text-base">Корзина</h3><button onclick="closeCart()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div>
+        <div id="cart-items" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
+        <div class="border-t border-zinc-800 pt-3 space-y-2 text-xs"><div class="flex justify-between text-zinc-400"><span>Сумма заказа:</span><span id="cart-subtotal" class="font-bold text-white">0 ₸</span></div><div class="flex justify-between text-zinc-400"><span>Доставка по РК:</span><span id="cart-delivery" class="font-bold text-white">1 500 ₸</span></div><div class="flex justify-between text-sm font-extrabold pt-2 border-t border-zinc-800"><span>Итого:</span><span id="cart-total">0 ₸</span></div></div>
+        <div class="bg-zinc-900 p-3 rounded-xl border border-zinc-800 text-xs space-y-1"><div class="text-zinc-400 font-semibold">Реквизиты Kaspi:</div><div class="font-mono font-bold text-white flex justify-between items-center gap-2"><span>+7 771 688 17 05 (Медет Е.)</span><button onclick="copyKaspiNumber(this)" class="text-[10px] bg-zinc-800 px-2 py-1 rounded flex-shrink-0">Копировать</button></div></div>
+        <button onclick="checkoutWhatsApp()" class="w-full py-3 bg-white text-black font-extrabold text-xs rounded-xl hover:bg-zinc-200 transition">Оформить заказ в WhatsApp</button>
+        <button onclick="contactTelegram()" class="w-full py-2.5 bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold text-xs rounded-xl hover:bg-zinc-800 transition flex items-center justify-center gap-2"><i class="fa-brands fa-telegram"></i> Написать в Telegram</button>
+    </div>
+</div>
+
+<div id="wishlist-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center" data-close="closeWishlist">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop>
+        <div class="flex justify-between items-center"><h3 class="font-bold text-base">Избранное</h3><button onclick="closeWishlist()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div>
+        <div id="wishlist-items" class="grid grid-cols-2 gap-3"></div>
+    </div>
+</div>
+
+<div id="info-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center" data-close="closeInfo">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop>
+        <div class="flex justify-between items-center"><h3 id="info-title" class="font-bold text-base">Информация</h3><button onclick="closeInfo()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div>
+        <div id="info-content" class="text-xs text-zinc-300 leading-relaxed space-y-3"></div>
+    </div>
+</div>
+
+<div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4" data-close="closeAdminPanel">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-4" data-stop>
+        <div class="flex justify-between items-center"><h3 class="font-bold text-base flex items-center"><i class="fa-solid fa-lock text-xs mr-2 text-zinc-400"></i> Управление каталогом</h3><button onclick="closeAdminPanel()" class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button></div>
+        <div id="admin-login-view" class="space-y-3">
+            <p class="text-xs text-zinc-400">Введите защитный пин-код для доступа к админ-панели.</p>
+            <input type="password" id="admin-pass-input" placeholder="Введите пин-код (например: 1234)" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-zinc-600">
+            <button onclick="loginAdmin()" id="login-btn" class="w-full py-3 bg-white text-black font-bold text-xs rounded-xl hover:bg-zinc-200 transition">Войти</button>
+            <p id="login-error" class="text-red-400 text-[10px] text-center hidden"></p>
+        </div>
+        <div id="admin-dashboard-view" class="space-y-3 hidden">
+            <div class="flex justify-between items-center bg-zinc-900 p-3 rounded-xl border border-zinc-800"><span class="text-xs font-semibold">Режим редактора</span><div class="flex gap-2"><button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-950 text-red-400 text-xs font-bold rounded-lg hover:bg-red-900">Выйти</button><button onclick="openProductEditor()" class="px-3 py-1.5 bg-white text-black text-xs font-bold rounded-lg">+ Товар</button></div></div>
+            <div id="admin-products-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
+        </div>
+    </div>
+</div>
+
+<div id="product-editor-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm hidden items-center justify-center p-4" data-close="closeProductEditor">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-3xl p-5 max-h-[90vh] overflow-y-auto space-y-3" data-stop>
+        <h3 id="editor-title" class="font-bold text-sm">Добавить товар</h3><input type="hidden" id="edit-product-id">
+        <div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Название</label><input type="text" id="edit-title" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"></div>
+        <div class="grid grid-cols-2 gap-2"><div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Цена (₸)</label><input type="number" id="edit-price" min="0" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"></div><div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Старая цена</label><input type="number" id="edit-old-price" min="0" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"></div></div>
+        <div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Категория</label><select id="edit-category" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"><option value="Худи">Худи</option><option value="Куртки">Куртки</option><option value="Кофты">Кофты</option><option value="Штаны">Штаны</option><option value="Футболки">Футболки</option></select></div>
+        
+        <!-- Замена ввода ссылки на выбор файла из галереи -->
+        <div>
+            <label class="text-[10px] font-semibold text-zinc-400 uppercase">Фото товара (из галереи)</label>
+            <div class="mt-1 flex items-center gap-3">
+                <label class="flex-1 cursor-pointer bg-zinc-900 border border-zinc-800 hover:border-zinc-600 rounded-xl px-3 py-2.5 text-xs text-zinc-300 flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-image text-sm"></i>
+                    <span id="file-name-label">Выбрать фото...</span>
+                    <input type="file" id="edit-image-file" accept="image/*" class="hidden" onchange="handleImagePick(this)">
+                </label>
+            </div>
+            <input type="hidden" id="edit-image-base64">
+            <div id="image-preview-container" class="mt-2 hidden">
+                <img id="image-preview" src="" class="w-16 h-16 object-cover rounded-xl border border-zinc-800">
+            </div>
+        </div>
+
+        <div><label class="text-[10px] font-semibold text-zinc-400 uppercase">Размеры (через запятую)</label><input type="text" id="edit-sizes" value="S, M, L, XL" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white mt-1"></div>
+        <div class="flex space-x-2 pt-2"><button onclick="saveProductData()" id="save-btn" class="flex-1 py-2.5 bg-white text-black font-bold text-xs rounded-xl">Сохранить</button><button onclick="closeProductEditor()" class="px-4 py-2.5 bg-zinc-900 border border-zinc-800 text-xs rounded-xl">Отмена</button></div>
+    </div>
+</div>
+
+<div id="toast-container"></div> 
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-const firebaseConfig = { apiKey: "AIzaSyCiT0V80oZUfIRayXpmGplAASKII92KSb0", authDomain: "drip-store-efdce.firebaseapp.com", projectId: "drip-store-efdce", storageBucket: "drip-store-efdce.firebasestorage.app", messagingSenderId: "306102933804", appId: "1:306102933804:web:07245eeb04613c7a19b489", measurementId: "G-Y6X9SXMP4X" };
-const app = initializeApp(firebaseConfig); const db = getFirestore(app); const auth = getAuth(app);
-const IMGBB_API_KEY = "d6d576514afb132f132bed2dbc6f4b28";
-const CONFIG = { WHATSAPP_PHONE: '77056748363', TELEGRAM_URL: 'https://t.me/asjsaks', KASPI_PHONE: '+7 771 688 17 05', KASPI_NAME: 'Медет Е.', DELIVERY_FEE: 1500, FREE_DELIVERY_FROM: 45000 };
-let products = []; let cart = readStorage('drip_cart_v3', []); let wishlist = readStorage('drip_wishlist_v3', []); let currentFilter = 'all'; let selectedProduct = null; let selectedSize = ''; let logoClicks = 0;
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCiT0V80oZUfIRayXpmGplAASKII92KSb0",
+  authDomain: "drip-store-efdce.firebaseapp.com",
+  projectId: "drip-store-efdce",
+  storageBucket: "drip-store-efdce.firebasestorage.app",
+  messagingSenderId: "306102933804",
+  appId: "1:306102933804:web:07245eeb04613c7a19b489",
+  measurementId: "G-Y6X9SXMP4X"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const CONFIG = { WHATSAPP_PHONE: '77056748363', TELEGRAM_URL: 'https://t.me/asjsaks', KASPI_PHONE: '+7 771 688 17 05', KASPI_NAME: 'Медет Е.', DELIVERY_FEE: 1500, FREE_DELIVERY_FROM: 45000, ADMIN_PIN: '1234' };
+
+let products = [];
+let cart = readStorage('drip_cart_v3', []);
+let wishlist = readStorage('drip_wishlist_v3', []);
+let currentFilter = 'all';
+let selectedProduct = null;
+let selectedSize = '';
+let logoClicks = 0;
+let isAdminLoggedIn = false;
+
 function readStorage(key, fallback) { try { const raw = localStorage.getItem(key); if (!raw) return fallback; const parsed = JSON.parse(raw); return Array.isArray(parsed) ? parsed : fallback; } catch (e) { return fallback; } }
 function saveCartWishlist() { localStorage.setItem('drip_cart_v3', JSON.stringify(cart)); localStorage.setItem('drip_wishlist_v3', JSON.stringify(wishlist)); }
 function money(n) { return Number(n || 0).toLocaleString('ru-RU') + ' ₸'; }
@@ -96,9 +198,337 @@ function genId() { return Date.now().toString(36) + Math.random().toString(36).s
 function toast(msg) { const c = document.getElementById('toast-container'); const el = document.createElement('div'); el.className = 'toast'; el.textContent = msg; c.appendChild(el); setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .25s'; }, 1800); setTimeout(() => el.remove(), 2100); }
 function openModal(id) { const m = document.getElementById(id); if (!m) return; m.classList.remove('hidden'); m.classList.add('flex'); document.body.classList.add('modal-open'); }
 function closeModal(id) { const m = document.getElementById(id); if (!m) return; m.classList.add('hidden'); m.classList.remove('flex'); if (!document.querySelector('.fixed.inset-0.flex')) { document.body.classList.remove('modal-open'); } }
-async function loadProducts() { try { const querySnapshot = await getDocs(collection(db, "products")); products = []; querySnapshot.forEach((doc) => { products.push({ id: doc.id, ...doc.data() }); }); renderProducts(); } catch (e) { document.getElementById('products-grid').innerHTML = `<div class="col-span-2 text-center py-10 text-red-500 text-xs">Ошибка загрузки каталога.</div>`; } }
-function renderProducts() { const grid = document.getElementById('products-grid'); grid.innerHTML = ''; const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter); document.getElementById('stats-count').textContent = `${products.length} товаров`; document.getElementById('product-count-label').textContent = `${filtered.length} позиций`; if (filtered.length === 0) { grid.innerHTML = `<div class="col-span-2 text-center py-10 text-zinc-500 text-xs">${products.length === 0 ? 'Каталог пока пуст.' : 'В этой категории нет товаров'}</div>`; return; } filtered.forEach(p => grid.appendChild(buildProductCard(p))); }
-function buildProductCard(p) { const isWished = wishlist.includes(p.id); const discount = p.oldPrice && p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : null; const card = document.createElement('div'); card.className = 'bg-zinc-900 border border-zinc-800/80 rounded-2xl overflow-hidden flex flex-col group'; const imgWrap = document.createElement('div'); imgWrap.className = 'relative aspect-square bg-zinc-950 overflow-hidden cursor-pointer'; imgWrap.onclick = () => openProduct(p.id); const img = document.createElement('img'); img.src = p.image; img.alt = p.title; img.loading = 'lazy'; img.className = 'w-full h-full object-cover group-hover:scale-105 transition duration-300'; imgWrap.appendChild(img); if (discount) { const badge = document.createElement('span'); badge.className = 'absolute top-2 left-2 bg-red-500 text-white font-bold text-[10px] px-2 py-0.5 rounded-md'; badge.textContent = `-${discount}%`; imgWrap.appendChild(badge); } const wishBtn = document.createElement('button'); wishBtn.className = 'absolute top-2 right-2 w-8 h-8 rounded-xl bg-black/60 backdrop-blur-md flex items-center justify-center text-zinc-300 hover:text-white'; wishBtn.onclick = (e) => { e.stopPropagation(); toggleWishlist(p.id); }; wishBtn.innerHTML = `<i class="${isWished ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart text-xs"></i>`; imgWrap.appendChild(wishBtn); card.appendChild(imgWrap); const body = document.createElement('div'); body.className = 'p-3 flex flex-col flex-grow justify-between space-y-2'; const info = document.createElement('div'); const cat = document.createElement('span'); cat.className = 'text-[10px] text-zinc-400 uppercase tracking-wider'; cat.textContent = p.category; const title = document.createElement('h4'); title.className = 'font-bold text-xs text-zinc-200 line-clamp-1 mt-0.5 cursor-pointer'; title.textContent = p.title; title.onclick = () => openProduct(p.id); info.appendChild(cat); info.appendChild(title); body.appendChild(info); const bottom = document.createElement('div'); bottom.className = 'flex items-center justify-between'; const priceWrap = document.createElement('div'); const price = document.createElement('span'); price.className = 'font-extrabold text-sm text-white'; price.textContent = money(p.price); priceWrap.appendChild(price); if (p.oldPrice) { const old = document.createElement('span'); old.className = 'text-[10px] text-zinc-500 line-through block'; old.textContent = money(p.oldPrice); priceWrap.appendChild(old); } bottom.appendChild(priceWrap); const addBtn = document.createElement('button'); addBtn.className = 'w-8 h-8 bg-white text-black rounded-xl font-bold text-xs flex items-center justify-center hover:bg-zinc-200 transition'; addBtn.innerHTML = '<i class="fa-solid fa-plus text-xs"></i>'; addBtn.onclick = () => openProduct(p.id); bottom.appendChild(addBtn); body.appendChild(bottom); card.appendChild(body); return card; }
-function filterCategory(cat, btnEl) { currentFilter = cat; document.querySelectorAll('.category-btn').forEach(b => { b.className = 'category-btn px-3.5 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium rounded-xl whitespace-nowrap transition hover:text-white'; }); if (btnEl) btnEl.className = 'category-btn px-3.5 py-2 bg-white text-black text-xs font-bold rounded-xl whitespace-nowrap transition'; renderProducts(); }
-function openProduct(id) { selectedProduct = products.find(p => p.id === id); if (!selectedProduct) return; selectedSize = selectedProduct.sizes && selectedProduct.sizes.length ? selectedProduct.sizes[0] : ''; document.getElementById('modal-category').textContent = selectedProduct.category; document.getElementById('modal-img').src = selectedProduct.image; document.getElementById('modal-title').textContent = selectedProduct.title; document.getElementById('modal-price').textContent = money(selectedProduct.price); document.getElementById('modal-old-price').textContent = selectedProduct.oldPrice ? money(selectedProduct.oldPrice) : ''; const sizesContainer = document.getElementById('modal-sizes'); sizesContainer.innerHTML = ''; const sizesBlock = document.getElementById('modal-sizes-container'); if (selectedProduct.sizes && selectedProduct.sizes.length) { sizesBlock.style.display = 'block'; selectedProduct.sizes.forEach(size => { const b = document.createElement('button'); b.textContent = size; b.dataset.size = size; b.className = size === selectedSize ? 'size-btn px-4 py-2 rounded-xl text-xs font-bold border bg-white text-black border-white transition' : 'size-btn px-4 py-2 rounded-xl text-xs font-bold border bg-zinc-900 text-zinc-300 border-zinc-800 transition'; b.onclick = () => selectSize(size); sizesContainer.appendChild(b); }); } else { sizesBlock.style.display = 'none'; } openModal('product-modal'); }
-function selectSize(size) { selectedSize = size; document.querySelectorAll('.size-btn').forEach(b => { b.className = b.dataset.size === size ? 'size-btn px-4 py
+
+async function loadProducts() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "products"));
+        products = [];
+        querySnapshot.forEach((doc) => { products.push({ id: doc.id, ...doc.data() }); });
+        renderProducts();
+    } catch (e) {
+        console.error("Ошибка загрузки:", e);
+        document.getElementById('products-grid').innerHTML = `<div class="col-span-2 text-center py-10 text-red-500 text-xs">Ошибка загрузки каталога.</div>`;
+    }
+}
+
+function renderProducts() {
+    const grid = document.getElementById('products-grid');
+    grid.innerHTML = '';
+    const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
+    document.getElementById('stats-count').textContent = `${products.length} товаров`;
+    document.getElementById('product-count-label').textContent = `${filtered.length} позиций`;
+    if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-2 text-center py-10 text-zinc-500 text-xs">${products.length === 0 ? 'Каталог пока пуст.' : 'В этой категории нет товаров'}</div>`;
+        return;
+    }
+    filtered.forEach(p => grid.appendChild(buildProductCard(p)));
+}
+
+function buildProductCard(p) {
+    const isWished = wishlist.includes(p.id);
+    const discount = p.oldPrice && p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : null;
+    const card = document.createElement('div');
+    card.className = 'bg-zinc-900 border border-zinc-800/80 rounded-2xl overflow-hidden flex flex-col group';
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'relative aspect-square bg-zinc-950 overflow-hidden cursor-pointer';
+    imgWrap.onclick = () => openProduct(p.id);
+    const img = document.createElement('img');
+    img.src = p.image; img.alt = p.title; img.loading = 'lazy'; img.className = 'w-full h-full object-cover group-hover:scale-105 transition duration-300';
+    imgWrap.appendChild(img);
+    if (discount) { const badge = document.createElement('span'); badge.className = 'absolute top-2 left-2 bg-red-500 text-white font-bold text-[10px] px-2 py-0.5 rounded-md'; badge.textContent = `-${discount}%`; imgWrap.appendChild(badge); }
+    const wishBtn = document.createElement('button');
+    wishBtn.className = 'absolute top-2 right-2 w-8 h-8 rounded-xl bg-black/60 backdrop-blur-md flex items-center justify-center text-zinc-300 hover:text-white';
+    wishBtn.onclick = (e) => { e.stopPropagation(); toggleWishlist(p.id); };
+    wishBtn.innerHTML = `<i class="${isWished ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart text-xs"></i>`;
+    imgWrap.appendChild(wishBtn);
+    card.appendChild(imgWrap);
+    const body = document.createElement('div');
+    body.className = 'p-3 flex flex-col flex-grow justify-between space-y-2';
+    const info = document.createElement('div');
+    const cat = document.createElement('span'); cat.className = 'text-[10px] text-zinc-400 uppercase tracking-wider'; cat.textContent = p.category;
+    const title = document.createElement('h4'); title.className = 'font-bold text-xs text-zinc-200 line-clamp-1 mt-0.5 cursor-pointer'; title.textContent = p.title; title.onclick = () => openProduct(p.id);
+    info.appendChild(cat); info.appendChild(title); body.appendChild(info);
+    const bottom = document.createElement('div'); bottom.className = 'flex items-center justify-between';
+    const priceWrap = document.createElement('div');
+    const price = document.createElement('span'); price.className = 'font-extrabold text-sm text-white'; price.textContent = money(p.price); priceWrap.appendChild(price);
+    if (p.oldPrice) { const old = document.createElement('span'); old.className = 'text-[10px] text-zinc-500 line-through block'; old.textContent = money(p.oldPrice); priceWrap.appendChild(old); }
+    bottom.appendChild(priceWrap);
+    const addBtn = document.createElement('button'); addBtn.className = 'w-8 h-8 bg-white text-black rounded-xl font-bold text-xs flex items-center justify-center hover:bg-zinc-200 transition'; addBtn.innerHTML = '<i class="fa-solid fa-plus text-xs"></i>'; addBtn.onclick = () => openProduct(p.id);
+    bottom.appendChild(addBtn); body.appendChild(bottom); card.appendChild(body); return card;
+}
+
+function filterCategory(cat, btnEl) {
+    currentFilter = cat;
+    document.querySelectorAll('.category-btn').forEach(b => { b.className = 'category-btn px-3.5 py-2 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium rounded-xl whitespace-nowrap transition hover:text-white'; });
+    if (btnEl) btnEl.className = 'category-btn px-3.5 py-2 bg-white text-black text-xs font-bold rounded-xl whitespace-nowrap transition';
+    renderProducts();
+}
+
+function openProduct(id) {
+    selectedProduct = products.find(p => p.id === id);
+    if (!selectedProduct) return;
+    selectedSize = selectedProduct.sizes && selectedProduct.sizes.length ? selectedProduct.sizes[0] : '';
+    document.getElementById('modal-category').textContent = selectedProduct.category;
+    document.getElementById('modal-img').src = selectedProduct.image;
+    document.getElementById('modal-title').textContent = selectedProduct.title;
+    document.getElementById('modal-price').textContent = money(selectedProduct.price);
+    document.getElementById('modal-old-price').textContent = selectedProduct.oldPrice ? money(selectedProduct.oldPrice) : '';
+    const sizesContainer = document.getElementById('modal-sizes');
+    sizesContainer.innerHTML = '';
+    const sizesBlock = document.getElementById('modal-sizes-container');
+    if (selectedProduct.sizes && selectedProduct.sizes.length) {
+        sizesBlock.style.display = 'block';
+        selectedProduct.sizes.forEach(size => {
+            const b = document.createElement('button'); b.textContent = size; b.dataset.size = size;
+            b.className = size === selectedSize ? 'size-btn px-4 py-2 rounded-xl text-xs font-bold border bg-white text-black border-white transition' : 'size-btn px-4 py-2 rounded-xl text-xs font-bold border bg-zinc-900 text-zinc-300 border-zinc-800 transition';
+            b.onclick = () => selectSize(size); sizesContainer.appendChild(b);
+        });
+    } else { sizesBlock.style.display = 'none'; }
+    openModal('product-modal');
+}
+function selectSize(size) {
+    selectedSize = size;
+    document.querySelectorAll('.size-btn').forEach(b => { b.className = b.dataset.size === size ? 'size-btn px-4 py-2 rounded-xl text-xs font-bold border bg-white text-black border-white transition' : 'size-btn px-4 py-2 rounded-xl text-xs font-bold border bg-zinc-900 text-zinc-300 border-zinc-800 transition'; });
+}
+function closeProductModal() { closeModal('product-modal'); }
+
+function addToCartFromModal() {
+    if (!selectedProduct) return;
+    cart.push({ ...selectedProduct, cartId: genId(), size: selectedSize });
+    saveCartWishlist(); closeProductModal(); openCart(); toast('Добавлено в корзину');
+}
+function openCart() {
+    const container = document.getElementById('cart-items');
+    container.innerHTML = '';
+    if (cart.length === 0) {
+        container.innerHTML = '<div class="text-center py-6 text-zinc-500 text-xs">Корзина пуста</div>';
+        document.getElementById('cart-subtotal').textContent = money(0);
+        document.getElementById('cart-delivery').textContent = money(CONFIG.DELIVERY_FEE);
+        document.getElementById('cart-total').textContent = money(CONFIG.DELIVERY_FEE);
+        openModal('cart-modal'); return;
+    }
+    let subtotal = 0;
+    cart.forEach((item) => {
+        subtotal += Number(item.price) || 0;
+        const row = document.createElement('div'); row.className = 'flex items-center justify-between bg-zinc-900 p-2.5 rounded-xl border border-zinc-800';
+        const left = document.createElement('div'); left.className = 'flex items-center space-x-3 min-w-0';
+        const img = document.createElement('img'); img.src = item.image; img.alt = item.title; img.className = 'w-12 h-12 rounded-lg object-cover flex-shrink-0'; left.appendChild(img);
+        const info = document.createElement('div'); info.className = 'min-w-0';
+        const t = document.createElement('h5'); t.className = 'font-bold text-xs line-clamp-1'; t.textContent = item.title;
+        const sub = document.createElement('div'); sub.className = 'text-[10px] text-zinc-400'; sub.textContent = `Размер: ${item.size || 'STD'} | ${money(item.price)}`;
+        info.appendChild(t); info.appendChild(sub); left.appendChild(info); row.appendChild(left);
+        const del = document.createElement('button'); del.className = 'text-zinc-500 hover:text-red-400 p-2 flex-shrink-0'; del.innerHTML = '<i class="fa-solid fa-trash text-xs"></i>';
+        del.onclick = () => { const idx = cart.findIndex(i => i.cartId === item.cartId); if (idx > -1) { cart.splice(idx, 1); saveCartWishlist(); openCart(); } };
+        row.appendChild(del); container.appendChild(row);
+    });
+    const delivery = subtotal >= CONFIG.FREE_DELIVERY_FROM ? 0 : CONFIG.DELIVERY_FEE;
+    document.getElementById('cart-subtotal').textContent = money(subtotal);
+    document.getElementById('cart-delivery').textContent = delivery === 0 ? 'Бесплатно' : money(delivery);
+    document.getElementById('cart-total').textContent = money(subtotal + delivery);
+    openModal('cart-modal');
+}
+function closeCart() { closeModal('cart-modal'); }
+
+function toggleWishlist(id) {
+    const idx = wishlist.indexOf(id);
+    if (idx > -1) { wishlist.splice(idx, 1); toast('Удалено из избранного'); } else { wishlist.push(id); toast('Добавлено в избранное'); }
+    saveCartWishlist(); renderProducts();
+}
+function openWishlist() {
+    const container = document.getElementById('wishlist-items'); container.innerHTML = '';
+    const wished = products.filter(p => wishlist.includes(p.id));
+    if (wished.length === 0) { container.innerHTML = '<div class="col-span-2 text-center py-6 text-zinc-500 text-xs">В избранном пусто</div>'; openModal('wishlist-modal'); return; }
+    wished.forEach(p => {
+        const card = document.createElement('div'); card.className = 'bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden';
+        const img = document.createElement('img'); img.src = p.image; img.className = 'w-full aspect-square object-cover'; card.appendChild(img);
+        const body = document.createElement('div'); body.className = 'p-2 space-y-1';
+        const t = document.createElement('h5'); t.className = 'font-bold text-xs line-clamp-1'; t.textContent = p.title;
+        const pr = document.createElement('div'); pr.className = 'font-bold text-xs text-white'; pr.textContent = money(p.price);
+        const btn = document.createElement('button'); btn.className = 'w-full py-1.5 bg-white text-black font-bold text-[10px] rounded-lg'; btn.textContent = 'Открыть'; btn.onclick = () => { closeWishlist(); openProduct(p.id); };
+        body.appendChild(t); body.appendChild(pr); body.appendChild(btn); card.appendChild(body); container.appendChild(card);
+    });
+    openModal('wishlist-modal');
+}
+function closeWishlist() { closeModal('wishlist-modal'); }
+
+function updateBadges() {
+    const cb = document.getElementById('cart-badge'); if (cart.length > 0) { cb.textContent = cart.length; cb.classList.remove('hidden'); } else cb.classList.add('hidden');
+    const wb = document.getElementById('wishlist-badge'); if (wishlist.length > 0) { wb.textContent = wishlist.length; wb.classList.remove('hidden'); } else wb.classList.add('hidden');
+}
+
+function buyNowFromModal() {
+    if (!selectedProduct) return;
+    const text = `Здравствуйте! Хочу заказать товар:\n• ${selectedProduct.title}\n• Размер: ${selectedSize || 'Универсальный'}\n• Цена: ${money(selectedProduct.price)}\n\nДоставка по Казахстану — ${money(CONFIG.DELIVERY_FEE)}. Жду реквизиты Kaspi!`;
+    window.open(`https://wa.me/${CONFIG.WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+}
+function checkoutWhatsApp() {
+    if (cart.length === 0) { toast('Корзина пуста'); return; }
+    const subtotal = cart.reduce((s, i) => s + (Number(i.price) || 0), 0);
+    const delivery = subtotal >= CONFIG.FREE_DELIVERY_FROM ? 0 : CONFIG.DELIVERY_FEE;
+    const total = subtotal + delivery;
+    const itemsList = cart.map(i => `• ${i.title} (Размер: ${i.size || 'STD'}) — ${money(i.price)}`).join('\n');
+    const text = `Здравствуйте! Хочу оформить заказ:\n\n${itemsList}\n\nСумма: ${money(subtotal)}\nДоставка: ${delivery === 0 ? 'Бесплатно' : money(delivery)}\nИтого: *${money(total)}*\n\nОплата на Kaspi (${CONFIG.KASPI_PHONE}, ${CONFIG.KASPI_NAME}). Готов отправить чек!`;
+    window.open(`https://wa.me/${CONFIG.WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+}
+function contactTelegram() { window.open(CONFIG.TELEGRAM_URL, '_blank'); }
+async function copyKaspiNumber(btn) {
+    try { await navigator.clipboard.writeText(CONFIG.KASPI_PHONE); const old = btn.textContent; btn.textContent = 'Скопировано!'; setTimeout(() => btn.textContent = old, 1500); } catch { toast('Не удалось'); }
+}
+
+const INFO_CONTENT = {
+    about: { title: 'О магазине', html: `<p><strong>DRIP STORE</strong> — магазин премиальной одежды и обуви. Мы отбираем лучшие позиции, следим за качеством и трендами.</p><p>Работаем по Казахстану и СНГ. Все товары — оригинального качества.</p><p>Связаться с нами:</p><ul class="list-disc pl-5 space-y-1"><li>WhatsApp: <a href="https://wa.me/${CONFIG.WHATSAPP_PHONE}" target="_blank" class="text-white underline">+7 705 674 83 63</a></li><li>Telegram: <a href="${CONFIG.TELEGRAM_URL}" target="_blank" class="text-white underline">@asjsaks</a></li></ul>` },
+    delivery: { title: 'Доставка и оплата', html: `<p><strong>Доставка по Казахстану:</strong></p><ul class="list-disc pl-5 space-y-1"><li>Стоимость: 1 500 ₸</li><li>Бесплатно при заказе от 45 000 ₸</li><li>Сроки: 2–7 рабочих дней</li></ul><p><strong>Доставка по СНГ:</strong> рассчитывается индивидуально.</p><p><strong>Оплата:</strong></p><ul class="list-disc pl-5 space-y-1"><li>Kaspi-перевод: ${CONFIG.KASPI_PHONE} (${CONFIG.KASPI_NAME})</li><li>После оплаты пришлите чек в WhatsApp или Telegram</li></ul>` },
+    return: { title: 'Возврат и обмен', html: `<p>Вы можете вернуть или обменять товар в течение <strong>14 дней</strong> с момента получения, если:</p><ul class="list-disc pl-5 space-y-1"><li>Товар не был в использовании</li><li>Сохранены бирки и оригинальная упаковка</li><li>Есть подтверждение покупки</li></ul><p>Для возврата напишите в WhatsApp или Telegram. Доставку возврата оплачивает покупатель, если причина не связана с браком.</p><p>Брак — меняем за наш счёт.</p>` }
+};
+function openInfo(key) { const data = INFO_CONTENT[key]; if (!data) return; document.getElementById('info-title').textContent = data.title; document.getElementById('info-content').innerHTML = data.html; openModal('info-modal'); }
+function closeInfo() { closeModal('info-modal'); }
+
+function handleLogoClick() { logoClicks++; if (logoClicks >= 5) { logoClicks = 0; openAdminPanel(); } }
+function openAdminPanel() {
+    if (isAdminLoggedIn) {
+        document.getElementById('admin-login-view').classList.add('hidden');
+        document.getElementById('admin-dashboard-view').classList.remove('hidden');
+        renderAdminProducts();
+    } else {
+        document.getElementById('admin-login-view').classList.remove('hidden');
+        document.getElementById('admin-dashboard-view').classList.add('hidden');
+        document.getElementById('admin-pass-input').value = '';
+        document.getElementById('login-error').classList.add('hidden');
+    }
+    openModal('admin-modal');
+}
+function closeAdminPanel() { closeModal('admin-modal'); }
+
+function loginAdmin() {
+    const pass = document.getElementById('admin-pass-input').value;
+    const err = document.getElementById('login-error');
+    if (pass === CONFIG.ADMIN_PIN) {
+        isAdminLoggedIn = true;
+        toast('Вход выполнен');
+        document.getElementById('admin-login-view').classList.add('hidden');
+        document.getElementById('admin-dashboard-view').classList.remove('hidden');
+        renderAdminProducts();
+    } else {
+        err.textContent = 'Неверный пин-код';
+        err.classList.remove('hidden');
+    }
+}
+function logoutAdmin() {
+    isAdminLoggedIn = false;
+    toast('Вы вышли');
+    closeAdminPanel();
+}
+
+function renderAdminProducts() {
+    const list = document.getElementById('admin-products-list'); list.innerHTML = '';
+    if (products.length === 0) { list.innerHTML = '<div class="text-center py-4 text-zinc-500 text-xs">Товаров пока нет</div>'; return; }
+    products.forEach(p => {
+        const row = document.createElement('div'); row.className = 'flex items-center justify-between bg-zinc-900 p-2.5 rounded-xl border border-zinc-800';
+        const left = document.createElement('div'); left.className = 'flex items-center space-x-2 min-w-0';
+        const img = document.createElement('img'); img.src = p.image; img.className = 'w-10 h-10 rounded-lg object-cover flex-shrink-0'; left.appendChild(img);
+        const info = document.createElement('div'); info.className = 'min-w-0';
+        const t = document.createElement('h6'); t.className = 'font-bold text-xs line-clamp-1'; t.textContent = p.title;
+        const pr = document.createElement('span'); pr.className = 'text-[10px] text-zinc-400'; pr.textContent = money(p.price);
+        info.appendChild(t); info.appendChild(pr); left.appendChild(info); row.appendChild(left);
+        const actions = document.createElement('div'); actions.className = 'flex space-x-1 flex-shrink-0';
+        const editBtn = document.createElement('button'); editBtn.className = 'px-2.5 py-1.5 bg-zinc-800 text-xs rounded-lg hover:bg-zinc-700'; editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>'; editBtn.onclick = () => editProduct(p.id);
+        const delBtn = document.createElement('button'); delBtn.className = 'px-2.5 py-1.5 bg-red-950 text-red-400 text-xs rounded-lg hover:bg-red-900'; delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>'; delBtn.onclick = () => deleteProduct(p.id);
+        actions.appendChild(editBtn); actions.appendChild(delBtn); row.appendChild(actions); list.appendChild(row);
+    });
+}
+
+// Обработка загрузки картинки с галереи
+function handleImagePick(input) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        document.getElementById('file-name-label').textContent = file.name;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64String = e.target.result;
+            document.getElementById('edit-image-base64').value = base64String;
+            const preview = document.getElementById('image-preview');
+            preview.src = base64String;
+            document.getElementById('image-preview-container').classList.remove('hidden');
+        }
+        reader.readAsDataURL(file);
+    }
+}
+
+function openProductEditor() {
+    document.getElementById('editor-title').textContent = 'Добавить товар';
+    document.getElementById('edit-product-id').value = '';
+    document.getElementById('edit-title').value = '';
+    document.getElementById('edit-price').value = '';
+    document.getElementById('edit-old-price').value = '';
+    document.getElementById('edit-image-base64').value = '';
+    document.getElementById('file-name-label').textContent = 'Выбрать фото...';
+    document.getElementById('image-preview-container').classList.add('hidden');
+    document.getElementById('edit-sizes').value = 'S, M, L, XL';
+    openModal('product-editor-modal');
+}
+function editProduct(id) {
+    const p = products.find(i => i.id === id); if (!p) return;
+    document.getElementById('editor-title').textContent = 'Редактировать товар';
+    document.getElementById('edit-product-id').value = p.id;
+    document.getElementById('edit-title').value = p.title;
+    document.getElementById('edit-price').value = p.price;
+    document.getElementById('edit-old-price').value = p.oldPrice || '';
+    document.getElementById('edit-category').value = p.category || 'Худи';
+    document.getElementById('edit-image-base64').value = p.image; // Храним старое фото в base64
+    document.getElementById('file-name-label').textContent = 'Изменить фото...';
+    const preview = document.getElementById('image-preview');
+    preview.src = p.image;
+    document.getElementById('image-preview-container').classList.remove('hidden');
+    document.getElementById('edit-sizes').value = p.sizes ? p.sizes.join(', ') : '';
+    openModal('product-editor-modal');
+}
+function closeProductEditor() { closeModal('product-editor-modal'); }
+
+async function saveProductData() {
+    const id = document.getElementById('edit-product-id').value;
+    const title = document.getElementById('edit-title').value.trim();
+    const priceRaw = Number(document.getElementById('edit-price').value);
+    const oldRaw = Number(document.getElementById('edit-old-price').value);
+    const category = document.getElementById('edit-category').value;
+    const image = document.getElementById('edit-image-base64').value.trim();
+    const sizes = document.getElementById('edit-sizes').value.split(',').map(s => s.trim()).filter(Boolean);
+    
+    if (!title) return toast('Введите название');
+    if (!priceRaw || priceRaw <= 0) return toast('Введите цену');
+    if (!image) return toast('Выберите фото из галереи');
+    
+    const oldPrice = oldRaw > 0 ? oldRaw : null;
+    const btn = document.getElementById('save-btn'); btn.textContent = 'Сохранение...'; btn.disabled = true;
+    try {
+        if (id) {
+            await setDoc(doc(db, "products", id), { title, price: priceRaw, oldPrice, category, image, sizes });
+        } else {
+            const newId = genId();
+            await setDoc(doc(db, "products", newId), { title, price: priceRaw, oldPrice, category, image, sizes });
+        }
+        toast('Товар сохранён!');
+        closeProductEditor();
+        await loadProducts();
+        renderAdminProducts();
+    } catch (e) {
+        console.error(e); toast('Ошибка сохранения');
+    } finally { btn.textContent = 'Сохранить'; btn.disabled = false; }
+}
+
+async function deleteProduct(id) {
+    if (!confirm('Удалить этот товар?')) return;
+    try { await deleteDoc(doc(db, "products", id)); toast('Удалено'); await loadProducts(); renderAdminProducts(); } catch (e) { toast('Ошибка удаления'); }
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { ['product-modal','cart-modal','wishlist-modal','admin-modal','product-editor-modal','info-modal'].forEach(id => closeModal(id)); }
+});
+document.querySelectorAll('[data-close]').forEach(m => {
+    m.addEventListener('click', (e) => { if (e.target === m && m.dataset.close && window[m.dataset.close]) window[m.dataset.close](); });
+});
+
+loadProducts();
+updateBadges();
+</script>
+</body>
+</html>
