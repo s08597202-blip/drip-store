@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRIP STORE — Одежда и обувь</title>
+<div onclick="window.adminClicks = (window.adminClicks || 0) + 1; if(window.adminClicks >= 5) { window.adminClicks = 0; let p = prompt('PIN:'); if(p === '1234') document.querySelector('.admin-modal').classList.remove('hidden'); }" style="cursor: pointer; display: inline-block;">
+    DRIP STORE — Одежда и обувь
+</div>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script>
