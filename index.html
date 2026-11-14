@@ -516,19 +516,27 @@ async function saveProductData() {
 }
 
 async function deleteProduct(id) {
-    if (!confirm('Удалить этот товар?')) return;
-    try { await deleteDoc(doc(db, "products", id)); toast('Удалено'); await loadProducts(); renderAdminProducts(); } catch (e) { toast('Ошибка удаления'); }
+    if (!confirm("Удалить этот товар?")) return;
+    try {
+        await deleteDoc(doc(db, "товары", id));
+        showToast("Удалено");
+        await loadProducts();
+        renderAdminList();
+    } catch (error) {
+        console.error("Ошибка удаления:", error);
+        showToast("Ошибка удаления");
+    }
 }
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { ['product-modal','cart-modal','wishlist-modal','admin-modal','product-editor-modal','info-modal'].forEach(id => closeModal(id)); }
-});
-document.querySelectorAll('[data-close]').forEach(m => {
-    m.addEventListener('click', (e) => { if (e.target === m && m.dataset.close && window[m.dataset.close]) window[m.dataset.close](); });
+document.querySelectorAll('[data-close]').forEach(item => {
+    item.addEventListener('click', () => {
+        document.querySelectorAll('.modal, .product-modal, .cart-modal, .wishlist-modal, .admin-modal, .product-editor-modal').forEach(m => {
+            m.classList.add('hidden');
+        });
+    });
 });
 
 loadProducts();
 updateBadges();
-</script>
 </body>
 </html>
