@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRIP STORE — Одежда и обувь</title>
+    <title>DRIP_STORE — Одежда и обувь</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.8/css/all.min.css">
     <style>
@@ -11,72 +11,75 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0e0e09; color: #f5f5f4; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .modal-open { overflow: hidden; }
-        .gallery-thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; }
-        .thumb-img { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid #333; }
-        .thumb-img:hover { border-color: #fff; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-white selection:text-black pb-20">
 
-    <!-- Шапка сайта -->
+    <!-- Шапка сайта (3 клика для админки) -->
     <header class="sticky top-0 z-40 bg-[#0e0e09]/90 backdrop-blur-md border-b border-zinc-800 px-4 py-4 flex justify-between items-center">
-        <div onclick="window.adminClicks = (window.adminClicks || 0) + 1; if(window.adminClicks >= 5) { window.adminClicks = 0; let p = prompt('PIN-код администратора:'); if(p === '1234') document.querySelector('.admin-modal').classList.remove('hidden'); }" style="cursor: pointer;" class="flex items-center gap-3">
+        <div onclick="window.adminClicks = (window.adminClicks || 0) + 1; if(window.adminClicks >= 3) { window.adminClicks = 0; let p = prompt('Введите пароль администратора:'); if(p === '201269') document.querySelector('.admin-modal').classList.remove('hidden'); else alert('Неверный пароль!'); }" style="cursor: pointer;" class="flex items-center gap-3">
             <div class="bg-white text-black font-extrabold px-3 py-1.5 rounded-xl text-sm tracking-wider">DS</div>
             <div>
-                <h1 class="font-bold text-base leading-tight">DRIP STORE</h1>
-                <p class="text-xs text-zinc-400">mobile store</p>
+                <h1 class="font-bold text-base leading-tight">DRIP_STORE</h1>
+                <p class="text-xs text-zinc-400">премиум маркет</p>
             </div>
         </div>
         <div class="flex items-center gap-2">
-            <button class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-300 hover:text-white"><i class="fa-regular fa-heart"></i></button>
-            <button class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-300 hover:text-white"><i class="fa-solid fa-bag-shopping"></i></button>
+            <a href="https://t.me/asjsaks" target="_blank" class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs font-semibold text-zinc-300 hover:text-white flex items-center gap-1.5">
+                <i class="fa-brands fa-telegram text-blue-400"></i> Менеджер
+            </a>
         </div>
     </header>
 
-    <!-- Основной контент (Витрина) -->
+    <!-- Основной контент (Витрина товаров) -->
     <main class="flex-1 px-4 py-6 max-w-2xl mx-auto w-full">
-        <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-4 mb-6 text-xs text-zinc-300">
-            <p class="font-medium text-white mb-1">🔥 Премиальное качество, трендовые позиции и быстрая доставка по Казахстану.</p>
-            <p class="text-zinc-400">🚚 Доставка от 1500 ₸ • Kaspi Перевод</p>
+        <!-- Баннер условий -->
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 mb-6 text-xs text-zinc-300 shadow-xl">
+            <p class="font-bold text-white mb-1">🔥 Топовые позиции, премиальное качество и быстрая доставка по Казахстану.</p>
+            <p class="text-zinc-400 mb-2">🚚 Доставка от 1500 ₸ • Менеджер: <a href="https://t.me/asjsaks" target="_blank" class="text-blue-400 underline">@asjsaks</a></p>
+            <div class="flex gap-2 mt-3 pt-3 border-t border-zinc-800">
+                <a href="https://qr.kaspi.kz/transfer" target="_blank" class="flex-1 bg-red-600/20 border border-red-500/30 text-red-400 text-center py-2 rounded-xl font-bold hover:bg-red-600/30 transition">
+                    <i class="fa-solid fa-credit-card"></i> Kaspi Перевод (+7 771 688 17 05 Медет Е.)
+                </a>
+            </div>
         </div>
 
-        <h2 class="font-bold text-lg mb-4">КАТАЛОГ ТОВАРОВ</h2>
+        <h2 class="font-bold text-lg mb-4 tracking-wide">КАТАЛОГ ТОВАРОВ</h2>
         
-        <!-- Сетка товаров -->
+        <!-- Сетка товаров (товары сразу на странице) -->
         <div id="products-grid" class="grid grid-cols-2 gap-4">
-            <!-- Сюда товары подгружаются автоматически -->
+            <!-- Сюда товары выводятся автоматически -->
         </div>
     </main>
 
     <!-- Модальное окно Админ-панели -->
     <div class="admin-modal hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="font-bold text-lg">Панель администратора</h3>
+                <h3 class="font-bold text-lg">Панель администратора DRIP_STORE</h3>
                 <button data-close class="text-zinc-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
             <div class="mb-4">
-                <h4 class="text-sm font-semibold mb-2">Добавить / Редактировать товар</h4>
+                <h4 class="text-sm font-semibold mb-2 text-zinc-300">Добавить / Редактировать товар</h4>
                 <input type="text" id="edit-product-id" class="hidden">
                 <input type="text" id="edit-title" placeholder="Название товара" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl p-3 mb-2 text-sm text-white">
                 <input type="number" id="edit-price" placeholder="Цена (₸)" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl p-3 mb-2 text-sm text-white">
                 <input type="text" id="edit-image" placeholder="Ссылки на фото через запятую (ImgBB)" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl p-3 mb-2 text-sm text-white">
-                <input type="text" id="edit-category" placeholder="Категория (например: Худи)" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl p-3 mb-4 text-sm text-white">
+                <input type="text" id="edit-category" placeholder="Категория (например: Худи, Обувь)" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl p-3 mb-4 text-sm text-white">
                 
-                <button onclick="saveProductData()" class="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-zinc-200 transition">Сохранить товар</button>
+                <button onclick="saveProductData()" class="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-zinc-200 transition shadow-lg">Сохранить товар</button>
             </div>
         </div>
     </div>
 
+    <!-- Скрипты магазина -->
     <script>
-        // Базовые товары или локальное хранилище
         let db = {
             products: [
                 {
                     id: 1,
-                    title: "CHROME HEARTS DARK BLUE MB",
+                    title: "CHROME HEARTS DARK BLUE",
                     price: 18990,
                     image: "https://i.ibb.co/Qj897S7d/image.jpg",
                     category: "Худи"
@@ -84,17 +87,18 @@
             ]
         };
 
-        // Рендеринг товаров на витрине с поддержкой галереи (несколько фото через запятую)
-        function renderAdminProducts() {
+        function renderProducts() {
             const grid = document.getElementById('products-grid');
             if (!grid) return;
             
             grid.innerHTML = db.products.map(p => {
                 const imgs = p.image ? p.image.split(',').map(i => i.trim()) : [];
                 const mainImg = imgs[0] || '';
-                
+                const whatsAppText = encodeURIComponent(`Здравствуйте! Хочу купить товар: ${p.title} за ${p.price} ₸. Ссылка на фото: ${mainImg}`);
+                const whatsAppUrl = `https://wa.me/77056748363?text=${whatsAppText}`;
+
                 return `
-                    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-3 flex flex-col justify-between">
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-3 flex flex-col justify-between shadow-lg">
                         <div>
                             <div class="relative bg-zinc-800 rounded-xl overflow-hidden aspect-square mb-3">
                                 <img src="${mainImg}" class="main-img-${p.id} w-full h-full object-cover" alt="${p.title}">
@@ -105,17 +109,19 @@
                         <div>
                             <div class="font-extrabold text-sm text-white mb-2">${p.price.toLocaleString()} ₸</div>
                             ${imgs.length > 1 ? `
-                                <div class="flex gap-1 overflow-x-auto pb-1">
-                                    ${imgs.map(img => `<img src="${img}" onclick="document.querySelector('.main-img-${p.id}').src='${img}'" class="w-8 h-8 object-cover rounded cursor-pointer border border-zinc-700">`).join('')}
+                                <div class="flex gap-1 overflow-x-auto pb-1 mb-2">
+                                    ${imgs.map(img => `<img src="${img}" onclick="document.querySelector('.main-img-${p.id}').src='${img}'" class="w-7 h-7 object-cover rounded cursor-pointer border border-zinc-700 hover:border-white">`).join('')}
                                 </div>
                             ` : ''}
+                            <a href="${whatsAppUrl}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition shadow-md">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Купить в WhatsApp
+                            </a>
                         </div>
                     </div>
                 `;
             }).join('');
         }
 
-        // Сохранение товара
         function saveProductData() {
             const id = document.getElementById('edit-product-id').value || Date.now();
             const title = document.getElementById('edit-title').value.trim();
@@ -135,22 +141,19 @@
                 db.products.push({ id: Number(id), title, price, image, category });
             }
 
-            // Закрываем модалку и обновляем витрину
             document.querySelector('.admin-modal').classList.add('hidden');
-            renderAdminProducts();
+            renderProducts();
             alert('Товар успешно сохранен!');
         }
 
-        // Закрытие модальных окон
         document.querySelectorAll('[data-close]').forEach(item => {
             item.addEventListener('click', () => {
                 document.querySelectorAll('.admin-modal').forEach(m => m.classList.add('hidden'));
             });
         });
 
-        // Запуск при загрузке страницы
         window.onload = () => {
-            renderAdminProducts();
+            renderProducts();
         };
     </script>
 </body>
